@@ -3,3 +3,6 @@ node_modules
 
 #resources/_gen
 resources/_gen
+
+#.hugo_build.lock
+.hugo_build.lock
