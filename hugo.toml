@@ -1,0 +1,80 @@
+baseURL = 'https://gofiggy.github.io/gofiggy/' # ADJUST org/repo if needed!
+languageCode = 'en-us'
+title = 'GoFiggy Documentation'
+# theme = 'docsy' # Theme is now loaded via Hugo Modules (see [module] section)
+themesDir = "" # Explicitly disable themes directory lookup
+enableGitInfo = false # Disable Git info lookup
+
+# Required for Docsy SCSS/SASS processing and Git info
+# enableGitInfo = true
+
+# Docsy theme specific parameters
+[params]
+  github_repo = "https://github.com/gofiggy/gofiggy" # Adjust if needed
+  #gitlab_repo = "..."
+  #bitbucket_repo = "..."
+
+  # Syntax highlighting - Use Hugo's Chroma instead of Prism
+  prism_syntax_highlighting = false
+
+  # Offline search settings
+  offlineSearch = true
+  offlineSearchSummaryLength = 200
+  offlineSearchMaxResults = 25
+
+  # UI settings
+  sidebar_menu_compact = true
+  navbar_logo = false # Set to true if you add a logo image like static/images/logo.png
+
+  [params.ui]
+    # Enable the dark mode toggle in the navbar
+    showLightDarkModeMenu = true
+
+  # Links in the top navbar
+  [[params.links.user]]
+    name = "GoFiggy Project"
+    url = "https://github.com/gofiggy/gofiggy" # Adjust if needed
+    icon = "fab fa-github"
+    desc = "Project Homepage"
+
+# Required for Docsy search indexing (if using offline search)
+# And basic site outputs
+[outputs]
+  home = [ "HTML", "RSS", "JSON", "SearchIndex" ]
+  section = [ "HTML", "RSS", "JSON", "SearchIndex" ]
+
+# --- Hugo Modules & Theme Configuration ---
+[module]
+  # Import the Docsy theme module
+  [[module.imports]]
+    path = "github.com/google/docsy"
+    disable = false
+  # Import the Docsy dependencies module
+  [[module.imports]]
+    path = "github.com/google/docsy/dependencies"
+    disable = false
+
+  # Mounts to make content, static files etc. available
+  [[module.mounts]]
+    source = "content/en" # Adjust if your content isn't in 'en'
+    target = "content"
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+  [[module.mounts]]
+    source = "layouts"
+    target = "layouts"
+  [[module.mounts]]
+    source = "data"
+    target = "data"
+  [[module.mounts]]
+    source = "assets"
+    target = "assets"
+  # Note: No need to explicitly mount theme files when using Hugo Modules correctly
+
+# Setup for Docsy offline search (needs to be defined *before* use in [outputs])
+[outputFormats.SearchIndex]
+  mediaType = "application/json"
+  baseName = "searchindex"
+  isPlainText = true
+  notAlternative = true
